@@ -1,0 +1,37 @@
+{
+    "id": "marketing_v1",
+    "title": "Digital Marketing Campaign — Starter",
+    "description": "Allocate budget across channels and choose creatives. Track CTR, Conversion, Revenue.",
+    "metadata": {
+      "initial_metrics": {"budget": 10000, "ctr": 0.02, "conversion_rate": 0.02, "revenue": 0, "budget_share_top_channel": 0.5},
+      "ctr_benchmark": 0.025,
+      "conv_benchmark": 0.03
+  },
+  "actors": [
+    {"id": "pm1", "role": "Product Manager", "attributes": {"experience": 3}}
+  ],
+  "decisions": [
+    {
+      "id": "alloc_budget",
+      "prompt": "Shift 10% of budget from top channel to a secondary channel?",
+      "options": [
+        {"id": "yes_shift", "label": "Shift 10%", "outcome_id": "shifted"},
+        {"id": "no_shift", "label": "Keep allocation", "outcome_id": "kept"}
+      ]
+    },
+    {
+    "id": "change_creative",
+    "prompt": "Run a new creative A/B test?",
+    "options": [
+      {"id": "run_ab", "label": "Run A/B", "outcome_id": "ab_test"},
+      {"id": "dont_ab", "label": "Don't run", "outcome_id": "no_ab"}
+      ]
+    }
+  ],
+  "outcomes": [
+    {"id": "shifted", "description": "Budget diversified", "impact": {"budget_share_top_channel": -0.1, "ctr": -0.001, "conversion_rate": 0.002}, "feedback": "Diversified spend; watch short-term CTR dip."},
+    {"id": "kept", "description": "Allocation unchanged", "impact": {"budget_share_top_channel": 0.0, "ctr": 0.0, "conversion_rate": 0.0}, "feedback": "No change."},
+    {"id": "ab_test", "description": "A/B test launched", "impact": {"ctr": 0.003, "conversion_rate": 0.004}, "feedback": "A/B test should improve CTR and conversion if winners are implemented."},
+    {"id": "no_ab", "description": "No test", "impact": {}, "feedback": "Opportunity cost of not testing."}
+  ]
+}
